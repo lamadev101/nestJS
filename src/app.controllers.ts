@@ -1,35 +1,32 @@
 import { Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { BookService } from "./book.service";
 
 @Controller('book')
 export class BookController{
+  constructor(private bookService: BookService){}
+
   // add book
   @Post('/add')
   addBook():string{
-    return "addBook";
+    return this.bookService.addBook();
   }
 
   // delete book
   @Delete('/delete')
   deleteBook(): string{
-    return "deleteBook";
+    return this.bookService.deleteBook();
   }
 
   // update book
   @Put('/update')
   updateBook(): string{
-    return "updateBook";
+    return this.bookService.deleteBook();
   }
 
   // get all books
   @Get('/all')
   getAllBooks(): string{
-    return "getAllBooks";
+    return this.bookService.getBooks();
   }
 
-  // get book by id
-  @Get('/findBookById/:id')
-  findBookById(@Param() params):string{
-    console.log(params.id);
-    return `findBookById id is ${params.id}`;
-  }
 }
